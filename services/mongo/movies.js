@@ -1,10 +1,16 @@
 const MovieModel = require('../../models/movieModel')
 
-const getMovies = async(searchText,soundCode) => {
+const getMovies = async (searchText, soundCode) => {
     let query = {};
-    if(searchText!=='undefined'){
-        query = {
-           $or:[{'Movie Name':{ $regex: '.*' + searchText + '.*', $options: 'i'}}, {'soundCode':{ $regex: '.*' + soundCode + '.*', $options: 'i'}}] 
+    if (searchText !== 'undefined') {
+        if (soundCode === '0000') {
+            query = {
+                'Movie Name': { $regex: '.*' + searchText + '.*', $options: 'i' }
+            }
+        } else {
+            query = {
+                $or: [{ 'Movie Name': { $regex: '.*' + searchText + '.*', $options: 'i' } }, { 'soundCode': { $regex: '.*' + soundCode + '.*', $options: 'i' } }]
+            }
         }
     }
     console.log(query);
