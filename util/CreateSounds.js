@@ -1,19 +1,4 @@
-const fs = require('fs')
-const MovieModel = require('./models/movieModel');
-let jsonData = {}
-fs.readFile('convertcsv.json', 'utf-8', async (err, data) => {
-  if (err) throw err
-  // console.log("deleted")
-  // process.exit(0);
-  jsonData = JSON.parse(data)
-  for (let i = 0; i < jsonData.length; i++) {
-    jsonData[i].soundCode = getSoundex(jsonData[i]["Movie Name"]);
-    await new MovieModel(jsonData[i]).save();
-  }
-  process.exit(0);
-})
-
-var getSoundex = (value) => {
+module.exports =  getSoundex = (value) => {
   value = value.toUpperCase();
   var soundex="";
   for (var i = 0; i < value.length; i++) {

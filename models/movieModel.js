@@ -8,7 +8,8 @@ var MovieSchema = new mongoose.Schema({
     "Number of IMDb Votes": { type: Number },
     "Awards": { type: String },
     "Language": { type: String },
-    "Alt Text":{ type: String }
+    "Alt Text":{ type: String },
+    "soundCode": { type: String }
 });
 
 
